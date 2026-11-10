@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Misión Evaluación: una experiencia gamificada para aprender a evaluar para mejorar.">
+  <title>Misión Evaluación — El aprendizaje no termina en la nota</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#inicio" aria-label="Misión Evaluación, inicio">
+      <span class="brand-mark">M<span>+</span></span>
+      <span class="brand-copy"><strong>MISIÓN</strong><small>EVALUACIÓN</small></span>
+    </a>
+    <div class="topbar-right" id="topbarRight" hidden>
+      <div class="xp-pill"><span>✦</span><strong id="headerPoints">0 XP</strong></div>
+      <div class="user-chip"><span class="avatar" id="userAvatar">A</span><span id="headerName">Agente</span></div>
+      <button class="icon-button" id="logoutButton" title="Cerrar sesión" aria-label="Cerrar sesión">↗</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="auth-layout" id="authView">
+      <div class="auth-intro">
+        <div class="eyebrow"><span class="pulse-dot"></span> CENTRO DE OPERACIONES PEDAGÓGICAS</div>
+        <h1>El aprendizaje<br>no termina en <em>la nota.</em></h1>
+        <p class="lead">Una misión para descubrir que evaluar también significa escuchar, orientar y abrir nuevas oportunidades para aprender.</p>
+        <div class="intro-stats">
+          <div><strong>03</strong><span>misiones</span></div>
+          <div><strong>05</strong><span>experiencias</span></div>
+          <div><strong>∞</strong><span>oportunidades</span></div>
+        </div>
+        <div class="orbit-card"><span class="orbit-icon">◎</span><div><strong>Tu progreso importa</strong><small>Explora. Decide. Reflexiona. Transforma.</small></div><span class="orbit-arrow">↗</span></div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-card-top"><span class="mini-label">IDENTIFICACIÓN DEL AGENTE</span><span class="secure-label">◈ Entorno de aprendizaje</span></div>
+        <h2 id="authTitle">Prepara tu misión</h2>
+        <p class="muted" id="authSubtitle">Ingresa para guardar tu avance y desbloquear insignias.</p>
+        <div class="auth-tabs" role="tablist" aria-label="Acceso">
+          <button class="auth-tab active" data-auth-mode="login" role="tab" aria-selected="true">Iniciar sesión</button>
+          <button class="auth-tab" data-auth-mode="register" role="tab" aria-selected="false">Crear cuenta</button>
+        </div>
+        <form id="authForm" class="form-stack">
+          <label id="nameField" class="field" hidden>Nombre o alias
+            <input name="name" type="text" minlength="2" maxlength="40" placeholder="¿Cómo te llamamos, agente?" autocomplete="name">
+          </label>
+          <label class="field">Correo electrónico
+            <input name="email" type="email" maxlength="100" placeholder="nombre@correo.com" autocomplete="email" required>
+          </label>
+          <label class="field">Contraseña
+            <input name="password" type="password" minlength="8" maxlength="72" placeholder="Mínimo 8 caracteres" autocomplete="current-password" required>
+          </label>
+          <label id="privacyField" class="check-line" hidden>
+            <input name="privacy" type="checkbox">
+            <span>Entiendo que mi nombre, correo y avance se guardarán para esta actividad académica. No incluiré información sensible.</span>
+          </label>
+          <button class="button button-primary button-wide" type="submit" id="authSubmit">Entrar a la misión <span>→</span></button>
+          <p class="form-message" id="authMessage" aria-live="polite"></p>
+        </form>
+        <div class="auth-foot">Una experiencia de evaluación formativa · Uso académico</div>
+      </div>
+    </section>
+
+    <section class="app-shell" id="appView" hidden>
+      <div class="dashboard-heading">
+        <div>
+          <div class="eyebrow"><span class="pulse-dot"></span> TABLERO DEL AGENTE</div>
+          <h1>Hola, <span id="welcomeName">agente</span><span class="wave">✦</span></h1>
+          <p class="lead compact">Tu misión de hoy: cambiar la forma de entender la evaluación.</p>
+        </div>
+        <div class="rank-card"><span class="rank-icon">✧</span><div><small>NIVEL ACTUAL</small><strong id="rankName">Explorador</strong><span id="rankNext">0 / 100 XP para el siguiente nivel</span></div></div>
+      </div>
+
+      <section class="progress-panel">
+        <div class="progress-copy"><div><span class="mini-label">PROGRESO DE LA MISIÓN</span><strong id="progressText">0 de 5 experiencias completadas</strong></div><span class="progress-percent" id="progressPercent">0%</span></div>
+        <div class="progress-track"><span id="progressBar"></span></div>
+        <div class="progress-foot"><span>◇ Cada intento es una oportunidad para mejorar.</span><span id="progressPoints">0 XP acumulados</span></div>
+      </section>
+
+      <div class="dashboard-grid">
+        <div class="main-column">
+          <div class="section-heading"><div><span class="mini-label">RUTA DE APRENDIZAJE</span><h2>Selecciona tu siguiente reto</h2></div><span class="section-index">01 — 05</span></div>
+          <div class="missions-grid" id="missionsGrid"></div>
+          <div class="closing-grid" id="closingGrid"></div>
+        </div>
+        <aside class="side-column">
+          <section class="side-card badge-card">
+            <div class="side-card-heading"><div><span class="mini-label">RECONOCIMIENTOS</span><h3>Tus insignias</h3></div><span class="side-symbol">✧</span></div>
+            <div class="badges-list" id="badgesList"></div>
+          </section>
+          <section class="side-card leaderboard-card">
+            <div class="side-card-heading"><div><span class="mini-label">COMUNIDAD</span><h3>Agentes destacados</h3></div><span class="side-symbol">♜</span></div>
+            <div id="leaderboardList" class="leaderboard-list"><p class="muted">Cargando clasificación…</p></div>
+            <p class="leaderboard-note">La clasificación reconoce el avance; no representa una nota académica.</p>
+          </section>
+          <section class="mentor-card">
+            <div class="mentor-orb">✳</div><div><span class="mini-label">RECURSO DE APOYO</span><h3>Menta IA</h3><p>Un mentor para convertir tus ideas en retroalimentación que ayude a mejorar.</p><button class="text-button" id="mentorInfoButton">Conocer el mentor <span>→</span></button></div>
+          </section>
+        </aside>
+      </div>
+      <footer class="app-footer"><span>MISIÓN EVALUACIÓN <i>·</i> Aprende para transformar</span><span>La evaluación es parte del camino, no la meta.</span></footer>
+    </section>
+
+    <section class="activity-shell" id="activityView" hidden>
+      <button class="back-button" id="backButton">← Volver al tablero</button>
+      <div id="activityContent"></div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js?v=1.1.0" defer></script>
+</body>
+</html>
